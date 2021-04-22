@@ -1,0 +1,54 @@
+.titleInfo {
+  color: #023560;
+  font-weight: bold;
+  font-size: 24px;
+}
+.container-information {
+  max-width: 750px;
+}
+.subtitleInfo {
+  color: #354451;
+  font-size: 18px;
+}
+.title-input {
+  color: #354451;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px 0px 6px 17px;
+}
+.container-two-input {
+  max-width: 297px;
+  min-width: 297px;
+  margin-right: 36px;
+}
+.container-full-width {
+  max-width: 627px;
+  min-width: 297px;
+}
+.container-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.custom {
+  border: 1px solid #b8daf7;
+  height: 56px;
+  border-radius: 10px;
+}
+.prf-info {
+    font-family: roboto;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 16px;
+    color: #3883C3;
+    max-width: 627px;
+}
+@media (max-width: 600px) {
+  .container-two-input {
+    max-width: 297px;
+    min-width: 297px;
+  }
+  .container-full-width {
+    max-width: 297px;
+    min-width: 297px;
+  }
+}

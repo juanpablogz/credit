@@ -1,55 +1,110 @@
 <template>
-  <b-container class="pt-5">
-    <b-row align-h="center" class="mt-5">
-      <b-col cols="*">
-        <h1 class="title">Fire Hydrant Surveyor</h1>
-        <p><em v-if="$nuxt.isOffline">You are offline</em></p>
-      </b-col>
-    </b-row>
-    <b-row align-h="center" v-if="$auth.loggedIn">
-      <b-col sm="9" class="my-4">
-        <survey-form @submitForm="handleFormResult"></survey-form>
-      </b-col>
-    </b-row>
-    <b-row align-h="center" class="mt-3">
-      <b-col cols="*">
-        <b-button v-if="!$auth.loggedIn" variant="primary" size="lg" @click="login">Login</b-button>
-        <b-button v-else variant="warning" @click="logout" size="lg">Logout</b-button>
-      </b-col>
-    </b-row>
-  </b-container>
+  <v-app>
+    <!-- {{steps}} -->
+    <v-row no-gutters>
+      <v-col cols="12" lg="4" sm="12" xs="12" class="color">
+        <div class="logo">
+          <img
+            class="image"
+            src="https://res.cloudinary.com/dutj1bbos/image/upload/v1618865725/Group_23_2_ee7cvn.png"
+            alt=""
+          />
+        </div>
+      </v-col>
+      <v-col cols="12" lg="8" md="12" sm="12" xs="12">
+        <v-container class="container">
+          <h1 class="title">
+            Bienvenido(a) a tu Solicitud de Crédito para sector agroindustrial
+            para personas morales
+          </h1>
+          <h5 class="subtitle">Consideraciones al llenar el formulario:</h5>
+          <p class="process">
+            Te pedimos tener contigo la siguiente información, antes de comenzar
+            el proceso:
+          </p>
+
+          <div v-for="(item, index) in label " :key="item.id">
+            <v-checkbox
+              color="success"
+              style="margin: 0px"
+              class="label"
+              v-model="checkbox[index].value"
+              :label="`${item}`"
+            ></v-checkbox>
+          </div>
+          <div class="align">
+            <nuxt-link to="/form" v-if="checkValidate" class="button mt-4" style="color: white">Siguiente paso</nuxt-link>
+            <button class="button enable mt-4" v-else>Siguiente paso</button>
+          </div>
+        </v-container>
+      </v-col>
+    </v-row>
+  </v-app>
 </template>
 
 <script>
-import surveyForm from '../components/survey-form'
-import { mapGetters } from "vuex";
 export default {
-  components: {
-    surveyForm
+  data() {
+    return {
+      checkbox: [
+        {name: 'identity', value: false},
+        {name: 'rfc', value: false},
+        {name: 'data', value: false},
+        {name: 'referencesBank', value: false},
+        {name: 'referencesPersonal', value: false}
+      ],
+      label: [
+        "identificación oficial vigente (IFE, INE, Pasaporte)",
+        "RFC o constancia de situación fiscal",
+        "En caso de persona moral; datos de principales accionistas (Nombre,Puesto, Antigüedad en el puesto, Nivel educativo).",
+        "Referencias Comerciales y/o Bancarias (compañía o Banco, Persona a contactar, Teléfono, Relación, Tiempo de conocerlo",
+        "Referencias personales NO familiares (nombre, Teléfono,Relación, Tiempo de conocerlo, Domicilio)."
+      ]
+    };
   },
+  components: {},
   methods: {
-    login() {
-      this.$auth.loginWith("auth0");
-    },
-    logout() {
-      this.$auth.logout();
-    },
-    async handleFormResult(formObj) {
-      //https://jsonplaceholder.typicode.com/posts is a test API I'm borrowing 
-      //I'm making the data fit because I'm too lazy to make my own test API
-      const post = {
-        title: formObj.serialNumber,
-        body: formObj.condition,
-        userId: 1
+    redirect () {
+
+    }
+  },
+  computed: {
+    checkValidate() {
+      let array = []
+      for (let i = 0; i < this.checkbox.length; i++) {
+        array.push(this.checkbox[i].value)
+
       }
-      try {
-        const result = await this.$axios.$post('https://jsonplaceholder.typicode.com/posts', post);
-        console.log(result);
-      } catch(e) {
-        console.log(e);
+      if (array[0] === true && array[1] && array[2] && array[3] && array[4] == true) {
+        return true
+      } else {
+        return false
       }
     }
   },
-  computed: mapGetters(["isAuthenticated"]),
 };
 </script>
+<style lang="scss" scoped>
+.image {
+  padding: 20px;
+}
+.container {
+  margin-top: 100px;
+  width: 600px;
+  margin-left: 60px;
+}
+.enable {
+  background: #9fd178;
+}
+@media (max-width: 1280px) {
+  .container {
+    margin-top: 50px;
+  }
+}
+@media (max-width: 600px) {
+  .container {
+    margin-left: 0px;
+    width: 100%
+  }
+}
+</style>

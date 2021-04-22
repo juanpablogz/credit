@@ -16,9 +16,12 @@
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
     "nanoid": "^2.1.11",
-    "nuxt": "^2.14.5"
+    "node-sass": "^5.0.0",
+    "nuxt": "^2.14.5",
+    "sass": "^1.32.11"
   },
   "devDependencies": {
+    "@nuxtjs/vuetify": "^1.11.3",
     "@vue/test-utils": "^1.1.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^26.1.0",

@@ -1,0 +1,83 @@
+.stepper {
+  position: absolute;
+  margin-left: 4%;
+  margin-top: 15px;
+}
+.step {
+  display: flex;
+  justify-content: end;
+  padding-left: 25%;
+  margin-bottom: 22px;
+  cursor: pointer;
+}
+.circle {
+  background: transparent;
+  border: 1px solid #3984c4;
+  height: 30px;
+  width: 30px;
+  left: 108px;
+  top: 157px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.img {
+  padding-left: 7px;
+  margin-top: 7px;
+}
+.check {
+  padding-left: 5px;
+  margin-top: 6px;
+}
+.line {
+  border-left: 1px solid #b8daf7;
+  height: 17px;
+  margin-top: 29px;
+  margin-left: 14px;
+}
+.line-with-circle {
+  margin-top: 0px;
+}
+.color {
+  background: #3984c4;
+  z-index: 999;
+}
+.ready {
+  background: #a9e37b;
+}
+.hiddenLine {
+  height: 0px;
+}
+.stopped {
+  color: #3883c3;
+  font-weight: bold;
+}
+.set {
+  color: #a9e37b;
+  font-weight: bold;
+}
+@media (max-width: 600px) {
+  .line {
+    height: 67px;
+    margin-top: -18px;
+    margin-left: 60px;
+    transform: rotate(90deg);
+  }
+  .line-with-circle {
+    margin-top: -46px;
+  }
+  .stepper {
+    display: flex;
+    overflow-x: auto;
+    max-width: 90%;
+    height: 130px;
+  }
+  .circle {
+    margin-right: 65px;
+  }
+  .nameStep {
+    font-size: 10px;
+  }
+  .step {
+    padding-left: 0%;
+  }
+}
